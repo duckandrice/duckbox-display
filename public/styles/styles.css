@@ -1,0 +1,153 @@
+body {
+   background: black;
+   color: white;
+   text-align: center;
+   font-family: 'FortescuePro', 'Times New Roman', serif;
+}
+
+#display {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+#settings {
+  margin: 30px auto;
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
+#settings select, #settings input {
+  display: inline-block;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  outline: none;
+  line-height: 20px;
+  height: 30px;
+  background: #000;
+  color: white;
+}
+
+.small select, .small input { width: 80px; }
+.medium select, .medium input { width: 180px; }
+.large select, .large input { width: 240px; }
+
+#volume-meter {
+  position: absolute;
+  height: 32px;
+  border: none;
+  left: 20px;
+}
+
+#volume-meter .bar {
+  position: absolute;
+  width: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  height: 100%;
+}
+
+.bar:nth-child(2) { margin-left: 15px; }
+.bar:nth-child(3) { margin-left: 30px; }
+
+.amplitude {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.input {
+  display: inline-block;
+  border: 1px solid white;
+}
+
+.hidden {
+  display: none;
+}
+
+#background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#background svg {
+  width: 100%;
+  height: 100%;
+}
+
+body.is-fullscreen { 
+  cursor: none; }
+body.is-fullscreen.show-settings { cursor: initial; }
+
+body.show-settings #settings {
+  display: block;
+}
+
+/* Track Info */
+.info {
+  color: #8894FF;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.info .track {
+  bottom: 0;
+  box-sizing: border-box;
+  font-size: 64px;
+  margin: 0 0 84px;
+  opacity: 1;
+  overflow: hidden;
+  padding: 0 50px;
+  position: absolute;
+  text-overflow: ellipsis;
+  transition: opacity 0.5s ease-in-out 0.5s;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.info .track.track-hidden {
+  opacity: 0;
+  transition: opacity 0 ease-in-out 0;
+}
+
+.info .track.track-previous {
+  opacity: 0;
+  transition-delay: 0;
+}
+
+.info .track .track-title {
+  display: block;
+  font-size: 76px;
+  width: 100%;
+}
+
+.info .track .track-artist {
+  color: #384DFF;
+  display: block;
+}
+
+.info .track .track-separator {
+  font-style: italic;
+  display: none;
+}
+
+/* Tiles */
+
+.active {
+	opacity: 1.0;
+}
+
+.inactive {
+	opacity: 0;
+}
+
+.animated {
+	transition: opacity 10.0s linear;
+}
+
