@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset='utf-8'>
+      <title>Duckbox Display</title>
+      <link href="styles/styles.css" rel="stylesheet" />
+  </head>
+  <body id="content">
+      <div id="settings">
+          <span class="input medium">
+              <select id="audioInput">
+            </select>
+        </span>
+        <span class="input large">
+          <input id="baseURL" name="baseURL" placeholder="http://example.com" type="text">
+        </span>
+        <span class="input small">
+          <input id="identifier" name="identifier" placeholder="abc" type="text">
+        </span>
+        <span class="" id="volume-meter">
+            <div id="bar-1" class="bar">
+          <div class="amplitude">
+        </div></div>
+            <div id="bar-2" class="bar">
+          <div class="amplitude">
+        </div></div>
+            <div id="bar-3" class="bar">
+          <div class="amplitude">
+        </div></div>
+        </span>
+      </div>
+      
+      <div id="display" class="presentation">
+            <div id="background"></div>
+            <div id="info" class="hidden">
+              <p id="track">Track <em>by</em> Artist</p>
+            </div>
+        </div>
+      
+        <script data-main="scripts/display" src="scripts/require.js"></script>
+  </body>
+</html>
