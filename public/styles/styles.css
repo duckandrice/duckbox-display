@@ -80,26 +80,48 @@ body {
   height: 100%;
 }
 
-body { cursor: none; }
-body.show-settings { cursor: initial; }
+body.is-fullscreen { 
+  cursor: none; }
+body.is-fullscreen.show-settings { cursor: initial; }
 
 body.show-settings #settings {
   display: block;
 }
 
 /* Track Info */
-#info {
+.info {
+  color: #0D26FC;
   position: absolute;
   width: 100%;
   bottom: 0;
 }
 
-#info p {
+.info .track {
+  bottom: 0;
+  box-sizing: border-box;
   font-size: 46px;
   margin: 0 0 42px;
+  opacity: 1;
+  overflow: hidden;
+  padding: 0 50px;
+  position: absolute;
+  text-overflow: ellipsis;
+  transition: opacity 0.5s ease-in-out 0.5s;
+  white-space: nowrap;
+  width: 100%;
 }
 
-#info p em {
+.info .track.track-hidden {
+  opacity: 0;
+  transition: opacity 0 ease-in-out 0;
+}
+
+.info .track.track-previous {
+  opacity: 0;
+  transition-delay: 0;
+}
+
+.info .track em {
   font-style: italic;
 }
 

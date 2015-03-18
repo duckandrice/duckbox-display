@@ -1,7 +1,7 @@
 {
   "name": "Duckbox Display",
   "description": "Default Duckbox Display",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 2,
   "app": {
 	"background": {
@@ -15,7 +15,6 @@
 	},
   "permissions": [
     "audioCapture", 
-    "videoCapture",
     "storage"
   ]
 }

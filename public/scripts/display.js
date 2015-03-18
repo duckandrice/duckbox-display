@@ -14,8 +14,9 @@ require([
       , lastDate
       , refreshTrackInterval
       , refreshTimeInterval
-      , info = document.getElementById('info')
-      , track = document.getElementById('track')
+      , info = document.getElementsByClassName('info')[0]
+      , track = document.getElementsByClassName('track')[0]
+      , currentTrack
     
     
     /**
@@ -163,22 +164,43 @@ require([
     
     
     function updateTrackInfo(value) {
+      if (value == currentTrack || (value && currentTrack && currentTrack.identifier == value.identifier)) {
+        return
+      }
+
+      currentTrack = value
+
+      var previous = document.getElementsByClassName('track-previous')[0]
+
+      if (previous) {
+        previous.remove()
+      }
+
+      previous = track.cloneNode(true)
+      track.parentNode.appendChild(previous)
+      setTimeout(function() { previous.classList.add('track-previous') }, 100)
+
       if (value) {
         var s = value.title || 'Untitled'
-        s += ' <em>by</em> ' + (value.artist || 'Unknown Artist')
+        s += (value.artist) ? ' <em>by</em> ' + value.artist : ''
         
+        track.classList.add('track-hidden')
         track.innerHTML = s
-        info.className = ''
+
+        setTimeout(function() { track.classList.remove('track-hidden') }, 100)
       }
       else {
-        info.className = 'hidden'
+        track.innerHTML = ''
       }
+
     }
     
 
     // Event listeners
 
     audioListener.onchange = function(values) {
+      if (!renderer) return
+
       var date = Date.now()
 
       // Gate the incoming frequencies to ignore all empty values (values of less than 10)
@@ -224,6 +246,13 @@ require([
       renderer.update(strengths)
     }
 
+    function onWindowUpdate() {
+      var body = document.getElementsByTagName('body')[0]
+        , currentWindow = chrome.app.window.current()
+
+      body.className = currentWindow.isFullscreen() ? 'is-fullscreen' : ''
+    }
+
     chrome.storage.sync.get(['audioInput', 'baseURL', 'identifier'], function(items) {
       requestAudio(items.audioInput)
       initDuckboxAPI(items.baseURL, items.identifier)
@@ -242,10 +271,15 @@ require([
         })
       }
     })
+
+    chrome.app.window.current().onBoundsChanged.addListener(onWindowUpdate)
+    chrome.app.window.current().onFullscreened.addListener(onWindowUpdate)
+    chrome.app.window.current().onMaximized.addListener(onWindowUpdate)
     
 
     // Main initialisation
 
+    onWindowUpdate()
     loadPattern()
     
     
