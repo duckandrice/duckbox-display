@@ -27,6 +27,13 @@ define(function() {
           oncomplete(null)
         }
       }
+      req.onreadystatechange = function(e) {
+        if (req.readyState === 4) {  
+          if (req.status !== 200) {  
+            oncomplete(null)
+          }  
+        }
+      }
       
       requests.currentTrack = req
       req.send()

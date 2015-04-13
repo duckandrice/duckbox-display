@@ -90,7 +90,7 @@ body.show-settings #settings {
 
 /* Track Info */
 .info {
-  color: #0D26FC;
+  color: #8894FF;
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -99,8 +99,8 @@ body.show-settings #settings {
 .info .track {
   bottom: 0;
   box-sizing: border-box;
-  font-size: 46px;
-  margin: 0 0 42px;
+  font-size: 64px;
+  margin: 0 0 84px;
   opacity: 1;
   overflow: hidden;
   padding: 0 50px;
@@ -121,8 +121,20 @@ body.show-settings #settings {
   transition-delay: 0;
 }
 
-.info .track em {
+.info .track .track-title {
+  display: block;
+  font-size: 76px;
+  width: 100%;
+}
+
+.info .track .track-artist {
+  color: #384DFF;
+  display: block;
+}
+
+.info .track .track-separator {
   font-style: italic;
+  display: none;
 }
 
 /* Tiles */

@@ -16,7 +16,7 @@ require([
       , refreshTimeInterval
       , info = document.getElementsByClassName('info')[0]
       , track = document.getElementsByClassName('track')[0]
-      , currentTrack
+      , currentTrack = { artist: "Unknown Artist", title: "Unknown Track" }
     
     
     /**
@@ -171,6 +171,9 @@ require([
       currentTrack = value
 
       var previous = document.getElementsByClassName('track-previous')[0]
+        , title = track.querySelector('.track-title')
+        , separator = track.querySelector('.track-separator')
+        , artist = track.querySelector('.track-artist')
 
       if (previous) {
         previous.remove()
@@ -181,18 +184,26 @@ require([
       setTimeout(function() { previous.classList.add('track-previous') }, 100)
 
       if (value) {
-        var s = value.title || 'Untitled'
-        s += (value.artist) ? ' <em>by</em> ' + value.artist : ''
+
+        title.innerHTML = value.title || 'Untitled'
+
+        if (value.artist) {
+          artist.innerHTML = value.artist
+          separator.classList.remove('hidden')
+        }
+        else {
+          separator.classList.add('hidden')
+          artist.innerHTML = ''
+        }
         
         track.classList.add('track-hidden')
-        track.innerHTML = s
-
         setTimeout(function() { track.classList.remove('track-hidden') }, 100)
       }
       else {
-        track.innerHTML = ''
+        separator.classList.add('hidden')
+        title.innerHTML = ''
+        artist.innerHTML = ''
       }
-
     }
     
 
