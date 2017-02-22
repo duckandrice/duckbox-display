@@ -1,20 +1,20 @@
 {
   "name": "Duckbox Display",
   "description": "Default Duckbox Display",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "manifest_version": 2,
   "app": {
 	"background": {
 	  "scripts": ["public/scripts/background.js"]
 	}
   },
-  "icons": { 
-	  "16": "public/img/duckbox-16.png", 
+  "icons": {
+	  "16": "public/img/duckbox-16.png",
 		"96": "public/img/duckbox-96.png",
-	  "128": "public/img/duckbox-128.png" 
+	  "128": "public/img/duckbox-128.png"
 	},
   "permissions": [
-    "audioCapture", 
+    "audioCapture",
     "storage"
   ]
 }
